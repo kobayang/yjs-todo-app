@@ -1,6 +1,6 @@
 # yjs-todo-app
 
-Todo App with [yjs](https://github.com/yjs/yjs). It's a collaborative todo app demo.
+Todo App with [Yjs](https://github.com/yjs/yjs). It's a collaborative todo app demo.
 
 ## Getting Started
 
