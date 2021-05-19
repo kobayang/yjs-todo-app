@@ -1,32 +1,31 @@
-import React, { useState } from "react";
 import "./App.css";
+import { useYTodo } from "./hooks/useYTodo";
 
 function App() {
-  const [todos, setTodos] = useState<string[]>([]);
-  const [currentTodo, setCurrentTodo] = useState("");
+  const { currentTodo, setCurrentTodo, addTodo, todos } = useYTodo();
 
   return (
     <div className="base">
       <div className="todoListBase">
-        <div className="todoInputBase">
+        <form
+          id="todoInputForm"
+          onSubmit={() => {
+            addTodo(currentTodo);
+            setCurrentTodo("");
+          }}
+        >
           <input
             className="todoInput"
             value={currentTodo}
             onChange={(e) => setCurrentTodo(e.target.value)}
           />
-          <button
-            className="submitTodoButton"
-            onClick={() => {
-              setTodos((todos) => [...todos, currentTodo]);
-              setCurrentTodo("");
-            }}
-          >
-            Submit
-          </button>
-        </div>
+          <button className="submitTodoButton">Submit</button>
+        </form>
         <ul className="todoList">
           {todos.map((todo) => (
-            <li className="todoItem">{todo}</li>
+            <li key={todo} className="todoItem">
+              {todo}
+            </li>
           ))}
         </ul>
       </div>
