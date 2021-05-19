@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [todos, setTodos] = useState<string[]>([]);
+  const [currentTodo, setCurrentTodo] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="base">
+      <div className="todoListBase">
+        <div className="todoInputBase">
+          <input
+            className="todoInput"
+            value={currentTodo}
+            onChange={(e) => setCurrentTodo(e.target.value)}
+          />
+          <button
+            className="submitTodoButton"
+            onClick={() => {
+              setTodos((todos) => [...todos, currentTodo]);
+              setCurrentTodo("");
+            }}
+          >
+            Submit
+          </button>
+        </div>
+        <ul className="todoList">
+          {todos.map((todo) => (
+            <li className="todoItem">{todo}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
